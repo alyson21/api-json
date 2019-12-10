@@ -17,6 +17,7 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/series', "SeriesController@index");
+$router->get('/emails', "EmailController@index");
+
 
 
