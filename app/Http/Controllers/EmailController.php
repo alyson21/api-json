@@ -8,6 +8,8 @@ use App\Email;
 use App\Txt\Txt;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Faker\Factory as Faker;
+use Illuminate\Http\Request;
 
 
 class EmailController
@@ -28,11 +30,26 @@ class EmailController
 //            i don't have email
 //            pedro@gmail.com.br");
 
-        $log = new Logger('name');
-        $log->pushHandler(new StreamHandler('storage/logs/sent.log', Logger::WARNING));
+        $log = new Logger('default');
+        $log->pushHandler(new StreamHandler('logs/sent.log', Logger::INFO));
 
         $log->warning('Aviso');
         $log->error('Erro');
+        $log->info("Info");
+
+        $faker = Faker::create();
+
+        $email = new Email();
+        echo $email->send();
+    }
+
+    public function store(Request $request){
+        Txt::write("emails", Email::filter($request->emails));
+        Txt::write("emails_".date('dmYHis'), Email::filter($request->emails) );
+        return var_dump($request->emails);
+    }
+
+    public function send(Request $request){
 
     }
 }

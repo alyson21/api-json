@@ -46,6 +46,7 @@ class Txt
         foreach ($data as $item){
             array_push($array, $item);
         }
+        $array = array_unique($array);
 
         $fo = fopen("$file.txt", "w");
         foreach ($array as $item) {
