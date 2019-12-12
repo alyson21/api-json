@@ -17,7 +17,6 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/emails', "EmailController@index");
 $router->post('/emails/add', "EmailController@store");
 $router->post('/emails/send', "EmailController@send");
 

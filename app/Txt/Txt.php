@@ -38,18 +38,22 @@ class Txt
         return array();
     }
 
-    public static function write($file, $data){
+    public static function write($file, $data)
+    {
         $array = self::read($file);
         if($array === null)
             $array = array();
 
-        foreach ($data as $item){
+        foreach ($data as $item)
+        {
             array_push($array, $item);
         }
         $array = array_unique($array);
 
         $fo = fopen("$file.txt", "w");
-        foreach ($array as $item) {
+
+        foreach ($array as $item)
+        {
             if($item != "" || $item != null)
                 fwrite($fo, $item.PHP_EOL);
         }
